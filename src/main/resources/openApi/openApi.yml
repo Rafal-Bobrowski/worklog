@@ -1,0 +1,146 @@
+openapi: 3.0.3
+info:
+  title: Products APIs Definition
+  description: |
+    # About Us
+    ***Worklog*** application for logging work for company clients.
+  version: 0.0.1
+  contact:
+    name: API Support
+    email: rabr@softwaremind.com
+  x-custom-info:
+    comment: Some comments
+    authors:
+      - name: John Doe
+        email: rabr@softwaremind.com
+tags:
+  - name: Clients
+    description: Categories-related operations
+servers:
+  - url: 'http://localhost:8080'
+paths:
+  /client/{clientId}:
+    get:
+      operationId: getClient
+      tags:
+        - Clients
+      summary: Returns client with clientId
+      description: Returns client with clientId
+      parameters:
+        - $ref: '#/components/parameters/clientIdPathParam'
+      responses:
+        '200':
+          description: Returns getClientDto object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getClientDto'
+        '404':
+          description: Client with clientId not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exceptionMessage'
+    put:
+      operationId: putClient
+      tags:
+        - Clients
+      summary: Update and returns client with clientId
+      description: Update and returns client with clientId
+      parameters:
+        - $ref: '#/components/parameters/clientIdPathParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/putClientDto'
+      responses:
+        '202':
+          description: Client updated, returns client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getClientDto'
+        '201':
+          description: Client with clientId not found, created new client, returns client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getClientDto'
+  /client:
+    post:
+      operationId: postClient
+      tags:
+        - Clients
+      summary: Creates and returns new client
+      description: Creates and returns new client
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postClientDto'
+      responses:
+        '201':
+          description: New client created, returns client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getClientDto'
+
+components:
+  parameters:
+    clientIdPathParam:
+      name: clientId
+      in: path
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100000
+        example: 101
+      required: true
+  schemas:
+    getClientDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 101
+        name:
+          type: string
+          example: 'John'
+        lastName:
+          type: string
+          example: 'Doe'
+    putClientDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: 'John'
+        lastName:
+          type: string
+          example: 'Doe'
+    postClientDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: 'John'
+        lastName:
+          type: string
+          example: 'Doe'
+      required:
+        - name
+        - lastName
+    exceptionMessage:
+      type: object
+      properties:
+        responseCode:
+          type: integer
+          example: 404
+        message:
+          type: string
+          example: 'Client with id: 2 not found'
+        code:
+          type: integer
+          example: 4041
