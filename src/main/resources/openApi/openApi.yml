@@ -50,6 +50,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/clientIdPathParam'
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -75,6 +76,7 @@ paths:
       summary: Creates and returns new client
       description: Creates and returns new client
       requestBody:
+        required: true
         content:
           application/json:
             schema:
