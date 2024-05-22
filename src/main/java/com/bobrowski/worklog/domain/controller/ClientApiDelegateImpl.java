@@ -23,13 +23,13 @@ public class ClientApiDelegateImpl implements ClientApiDelegate {
     private final ClientMapper clientMapper;
 
     @Override
-    public ResponseEntity<GetClientDto> getClient(Integer clientId) {
-        Optional<Client> clientById = clientService.findById(Long.valueOf(clientId));
+    public ResponseEntity<GetClientDto> getClient(Long clientId) {
+        Optional<Client> clientById = clientService.findById(clientId);
         if(clientById.isPresent()) {
             GetClientDto getClientDto = clientMapper.entityToGetDto(clientById.get());
             return new ResponseEntity<>(getClientDto, HttpStatus.OK);
         } else {
-            throw new NoClientWithSuchIdException(Long.valueOf(clientId));
+            throw new NoClientWithSuchIdException(clientId);
         }
     }
 
@@ -41,10 +41,10 @@ public class ClientApiDelegateImpl implements ClientApiDelegate {
     }
 
     @Override
-    public ResponseEntity<GetClientDto> putClient(Integer clientId, PutClientDto putClientDto) {
+    public ResponseEntity<GetClientDto> putClient(Long clientId, PutClientDto putClientDto) {
         Client client = clientMapper.putDtoToEntity(putClientDto);
-        client.setId(Long.valueOf(clientId));
-        HttpStatus httpStatus = clientService.existsById(Long.valueOf(clientId)) ? HttpStatus.ACCEPTED : HttpStatus.CREATED;
+        client.setId(clientId);
+        HttpStatus httpStatus = clientService.existsById(clientId) ? HttpStatus.ACCEPTED : HttpStatus.CREATED;
         Client savedClient = clientService.updateOrCreate(client);
         return new ResponseEntity<>(clientMapper.entityToGetDto(savedClient), httpStatus);
     }
