@@ -129,9 +129,15 @@ components:
       properties:
         name:
           type: string
+          nullable: false
+          minLength: 3
+          maxLength: 20
           example: 'John'
         lastName:
           type: string
+          nullable: false
+          minLength: 3
+          maxLength: 20
           example: 'Doe'
       required:
         - name

@@ -32,13 +32,13 @@ public class ClientExceptionHandler extends ResponseEntityExceptionHandler {
         ObjectError objectError = ex.getBindingResult().getAllErrors().get(0);
         String message;
         if (objectError instanceof FieldError fieldError){
-            message = "Property with name: " + fieldError.getField() + " in object: " + fieldError.getObjectName() + " cannot be: " + fieldError.getRejectedValue();
+            message = "Not allowed value for field with name: '" + fieldError.getField() + "' in object: '" + fieldError.getObjectName() + "', " + fieldError.getDefaultMessage();
             ExceptionMessage exceptionMessage = ExceptionMessage.builder()
                     .responseCode(HttpStatus.BAD_REQUEST.value())
                     .message(message)
                     .code(4041)
                     .build();
-            return handleExceptionInternal(ex, exceptionMessage, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+            return handleExceptionInternal(ex, exceptionMessage, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
         }
         return super.handleMethodArgumentNotValid(ex, headers, status, request);
     }
