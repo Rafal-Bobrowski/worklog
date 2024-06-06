@@ -1,0 +1,11 @@
+type: object
+properties:
+  responseCode:
+    type: integer
+    example: 404
+  message:
+    type: string
+    example: 'Customer with id: 2 not found'
+  code:
+    type: integer
+    example: 4041

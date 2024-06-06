@@ -1,0 +1,19 @@
+post:
+  operationId: postCustomer
+  tags:
+    - Customers
+  summary: Creates and returns new customer
+  description: Creates and returns new customer
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/customer/postCustomerDto.yml'
+  responses:
+    '201':
+      description: New customer created, returns customer.
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/customer/getCustomerDto.yml'

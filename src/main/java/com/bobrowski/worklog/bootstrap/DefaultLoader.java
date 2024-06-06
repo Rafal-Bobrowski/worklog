@@ -1,7 +1,7 @@
 package com.bobrowski.worklog.bootstrap;
 
-import com.bobrowski.worklog.domain.entity.Client;
-import com.bobrowski.worklog.domain.repository.ClientRepository;
+import com.bobrowski.worklog.domain.entity.Customer;
+import com.bobrowski.worklog.domain.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -12,14 +12,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class DefaultLoader implements CommandLineRunner {
 
-    private final ClientRepository clientRepository;
+    private final CustomerRepository customerRepository;
 
     @Override
     public void run(String... args) {
-        Client client = Client.builder()
+        Customer customer = Customer.builder()
                 .name("Johny")
                 .lastName("Depp")
                 .build();
-        clientRepository.save(client);
+        customerRepository.save(customer);
     }
 }

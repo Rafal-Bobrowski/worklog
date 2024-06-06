@@ -1,0 +1,48 @@
+get:
+  operationId: getCustomer
+  tags:
+    - Customers
+  summary: Returns customer with customerId
+  description: Returns customer with customerId
+  parameters:
+    - $ref: '../../parameters/customer/customerIdPathParam.yml'
+  responses:
+    '200':
+      description: Returns getCustomerDto object
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/customer/getCustomerDto.yml'
+    '404':
+      description: Customer with customerId not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/common/exceptionMessage.yml'
+put:
+  operationId: putCustomer
+  tags:
+    - Customers
+  summary: Update and returns customer with customerId
+  description: Update and returns customer with customerId
+  parameters:
+    - $ref: '../../parameters/customer/customerIdPathParam.yml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/customer/putCustomerDto.yml'
+  responses:
+    '202':
+      description: Customer updated, returns customer.
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/customer/getCustomerDto.yml'
+    '201':
+      description: Customer with customerId not found, created new customer, returns customer.
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/customer/getCustomerDto.yml'

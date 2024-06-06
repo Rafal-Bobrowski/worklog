@@ -1,0 +1,9 @@
+name: customerId
+in: path
+schema:
+  type: integer
+  format: int64
+  minimum: 1
+  maximum: 100000
+  example: 101
+required: true

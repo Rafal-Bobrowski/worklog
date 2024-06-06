@@ -15,10 +15,10 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class ClientExceptionHandler extends ResponseEntityExceptionHandler {
+public class CustomerExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({NoClientWithSuchIdException.class})
-    protected ResponseEntity<Object> handleNoClientWithSuchIdException(Exception ex, WebRequest request){
+    @ExceptionHandler({NoCustomerWithSuchIdException.class})
+    protected ResponseEntity<Object> handleNoCustomerWithSuchIdException(Exception ex, WebRequest request){
         ExceptionMessage exceptionMessage = ExceptionMessage.builder()
                 .responseCode(HttpStatus.NOT_FOUND.value())
                 .message(ex.getMessage())
