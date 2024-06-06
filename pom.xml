@@ -20,6 +20,7 @@
         <openapi-generator-maven-plugin.version>7.6.0</openapi-generator-maven-plugin.version>
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
         <org.projectlombok.version>1.18.32</org.projectlombok.version>
+        <io.fabric8.docker-maven-plugin.version>0.44.0</io.fabric8.docker-maven-plugin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -79,12 +80,39 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <layers>
+                        <enabled>true</enabled>
+                        <includeLayerTools>true</includeLayerTools>
+                    </layers>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${io.fabric8.docker-maven-plugin.version}</version>
+                <configuration>
+                    <verbose>true</verbose>
+                    <images>
+                        <image>
+                            <name>project/${project.artifactId}</name>
+                            <build>
+                                <assembly>
+                                    <descriptorRef>artifact</descriptorRef>
+                                </assembly>
+                                <dockerFile>Dockerfile</dockerFile>
+                                <tags>
+                                    <tag>latest</tag>
+                                    <tag>${project.version}</tag>
+                                </tags>
+                            </build>
+                        </image>
+                    </images>
                 </configuration>
             </plugin>
             <plugin>
