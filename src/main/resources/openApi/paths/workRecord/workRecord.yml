@@ -1,0 +1,19 @@
+post:
+  operationId: postWorkRecord
+  tags:
+    - WorkRecords
+  summary: Creates and returns new work record
+  description: Creates and returns new work record
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/workRecord/postWorkRecordDto.yml'
+  responses:
+    '201':
+      description: New record created, returns record.
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/workRecord/getWorkRecordDto.yml'

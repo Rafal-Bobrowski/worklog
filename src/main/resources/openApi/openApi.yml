@@ -23,3 +23,11 @@ paths:
     $ref: './paths/customer/customer.yml'
   /customer/{customerId}:
     $ref: './paths/customer/customer_customerId.yml'
+  /employee:
+    $ref: './paths/employee/employee.yml'
+  /employee/{employeeId}:
+    $ref: './paths/employee/employee_employeeId.yml'
+  /workRecord:
+    $ref: './paths/workRecord/workRecord.yml'
+  /workRecord/{workRecordId}:
+    $ref: './paths/workRecord/workRecord_workRecordId.yml'

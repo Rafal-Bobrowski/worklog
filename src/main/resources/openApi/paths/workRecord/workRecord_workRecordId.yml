@@ -1,0 +1,48 @@
+get:
+  operationId: getWorkRecord
+  tags:
+    - WorkRecords
+  summary: Returns work record with recordId
+  description: Returns work record with recordId
+  parameters:
+    - $ref: '../../parameters/workRecord/workRecordIdPathParam.yml'
+  responses:
+    '200':
+      description: Returns getWorkRecordDto object
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/workRecord/getWorkRecordDto.yml'
+    '404':
+      description: Work record with workRecordId not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/common/exceptionMessage.yml'
+put:
+  operationId: putWorkRecord
+  tags:
+    - WorkRecords
+  summary: Update and returns work record with workRecordId
+  description: Update and returns record with workRecordId
+  parameters:
+    - $ref: '../../parameters/workRecord/workRecordIdPathParam.yml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/workRecord/putWorkRecordDto.yml'
+  responses:
+    '202':
+      description: Work record updated, returns work record.
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/workRecord/getWorkRecordDto.yml'
+    '201':
+      description: Work record with workRecordId not found, created new work record, returns work record.
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/workRecord/getWorkRecordDto.yml'

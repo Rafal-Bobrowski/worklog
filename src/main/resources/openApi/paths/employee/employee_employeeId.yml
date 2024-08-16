@@ -1,0 +1,48 @@
+get:
+  operationId: getEmployee
+  tags:
+    - Employees
+  summary: Returns employee with employeeId
+  description: Returns employee with employeeId
+  parameters:
+    - $ref: '../../parameters/employee/employeeIdPathParam.yml'
+  responses:
+    '200':
+      description: Returns getEmployeeDto object
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/employee/getEmployeeDto.yml'
+    '404':
+      description: Employee with employeeId not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/common/exceptionMessage.yml'
+put:
+  operationId: putEmployee
+  tags:
+    - Employees
+  summary: Update and returns employee with employeeId
+  description: Update and returns employee with employeeId
+  parameters:
+    - $ref: '../../parameters/employee/employeeIdPathParam.yml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/employee/putEmployeeDto.yml'
+  responses:
+    '202':
+      description: Employee updated, returns employee.
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/employee/getEmployeeDto.yml'
+    '201':
+      description: Employee with employeeId not found, created new employee, returns employee.
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/employee/getEmployeeDto.yml'

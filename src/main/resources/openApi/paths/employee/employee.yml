@@ -1,0 +1,19 @@
+post:
+  operationId: postEmployee
+  tags:
+    - Employees
+  summary: Creates and returns new employee
+  description: Creates and returns new employee
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/employee/postEmployeeDto.yml'
+  responses:
+    '201':
+      description: New employee created, returns employee.
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/employee/getEmployeeDto.yml'

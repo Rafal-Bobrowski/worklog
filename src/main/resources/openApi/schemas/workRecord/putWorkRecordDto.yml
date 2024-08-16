@@ -1,0 +1,32 @@
+type: object
+properties:
+  date:
+    type: string
+    format: date
+    nullable: false
+    example: '2017-07-21'
+  duration:
+    type: integer
+    format: int32
+    max: 1440
+    nullable: false
+    example: 75
+    description: duration time in minutes
+  description:
+    type: string
+    example: 'Meeting with customer'
+  customerId:
+    type: integer
+    format: int64
+    nullable: false
+    example: 102
+  employeeId:
+    type: integer
+    format: int64
+    nullable: false
+    example: 103
+required:
+  - localDate
+  - duration
+  - customerId
+  - employeeId
