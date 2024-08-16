@@ -15,9 +15,13 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class CustomerExceptionHandler extends ResponseEntityExceptionHandler {
+public class CommonExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({NoCustomerWithSuchIdException.class})
+    @ExceptionHandler({
+            NoCustomerWithSuchIdException.class,
+            NoEmployeeWithSuchIdException.class,
+            NoWorkRecordWithSuchIdException.class
+    })
     protected ResponseEntity<Object> handleNoCustomerWithSuchIdException(Exception ex, WebRequest request){
         ExceptionMessage exceptionMessage = ExceptionMessage.builder()
                 .responseCode(HttpStatus.NOT_FOUND.value())
@@ -36,7 +40,7 @@ public class CustomerExceptionHandler extends ResponseEntityExceptionHandler {
             ExceptionMessage exceptionMessage = ExceptionMessage.builder()
                     .responseCode(HttpStatus.BAD_REQUEST.value())
                     .message(message)
-                    .code(4041)
+                    .code(4001)
                     .build();
             return handleExceptionInternal(ex, exceptionMessage, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
         }
