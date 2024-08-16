@@ -19,5 +19,5 @@ public class Customer {
     private String name;
     private String lastName;
     @OneToMany(mappedBy = "customer")
-    private List<Record> records;
+    private List<WorkRecord> workRecords;
 }

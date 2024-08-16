@@ -3,6 +3,7 @@ package com.bobrowski.worklog.domain.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.Duration;
 import java.time.LocalDate;
 
 @Entity
@@ -11,16 +12,16 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Record {
+public class WorkRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate date;
-    private int minutes;
+    private Duration duration;
+    private String description;
     @ManyToOne
     private Customer customer;
     @ManyToOne
     private Employee employee;
-
 }

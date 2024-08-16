@@ -11,10 +11,10 @@ import org.mapstruct.Mapping;
 public interface CustomerMapper {
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "records", ignore = true)
+    @Mapping(target = "workRecords", ignore = true)
     Customer postDtoToEntity(PostCustomerDto postCustomerDto);
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "records", ignore = true)
+    @Mapping(target = "workRecords", ignore = true)
     Customer putDtoToEntity(PutCustomerDto putCustomerDto);
     GetCustomerDto entityToGetDto(Customer customer);
 }
